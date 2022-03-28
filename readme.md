@@ -2,7 +2,7 @@
 Build the service, this will create a docker container using the maven plugin "build-image":<br/>
 `$ mvn clean spring-boot:build-image` <br/>
 Start the container: <br/>
-`$ docker-compose -f src/main/docker/docker-compose-sandbox.yaml up --remove-orphans`
+`$ docker-compose -f src/main/docker/docker-compose-sandbox-local.yaml up --remove-orphans`
 
 Make sure the image name and tag in the compose-file matches with what is being generated
 
