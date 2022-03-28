@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/legalentity/1.0/7691234567/guid"
+  },
+  "response": {
+    "body": "bab17d8b-af38-4531-967c-083f15ca1574",
+    "headers": {
+      "Content-Type": "text/plain"
+    },
+    "status": "200"
+  }
+}

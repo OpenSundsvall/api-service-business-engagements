@@ -1,0 +1,163 @@
+openapi: 3.0.1
+info:
+  title: api-businessengagements
+  contact: {}
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  version: "1.0"
+servers:
+- url: http://localhost:8727
+tags:
+- name: Business Engagements
+  description: En tjänst som hämtar en persons företagsengagemang
+paths:
+  /engagements/{partyId}:
+    get:
+      tags:
+      - Business Engagements
+      operationId: getEngagements
+      parameters:
+      - name: partyId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: Unique identifier for a person
+          example: 6a5c3d04-412d-11ec-973a-0242ac130003
+      - name: personalName
+        in: query
+        required: true
+        schema:
+          type: string
+          description: The first and surname of the person
+      - name: serviceName
+        in: query
+        required: true
+        schema:
+          type: string
+          description: Name of the system initiating the request
+          example: Mina Sidor
+      responses:
+        "400":
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "404":
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: No Content
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BusinessEngagementsResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: Successful Operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BusinessEngagementsResponse'
+  /api-docs:
+    get:
+      tags:
+      - API
+      summary: OpenAPI
+      operationId: getApiDocs
+      responses:
+        "200":
+          description: OK
+          content:
+            application/yaml:
+              schema:
+                type: string
+      x-auth-type: None
+      x-throttling-tier: Unlimited
+      x-wso2-mutual-ssl: Optional
+components:
+  schemas:
+    Problem:
+      type: object
+      properties:
+        instance:
+          type: string
+          format: uri
+        type:
+          type: string
+          format: uri
+        parameters:
+          type: object
+          additionalProperties:
+            type: object
+        status:
+          $ref: '#/components/schemas/StatusType'
+        title:
+          type: string
+        detail:
+          type: string
+    StatusType:
+      type: object
+      properties:
+        reasonPhrase:
+          type: string
+        statusCode:
+          type: integer
+          format: int32
+    BusinessEngagementsResponse:
+      required:
+      - status
+      type: object
+      properties:
+        engagements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Engagement'
+        statusDescriptions:
+          type: object
+          additionalProperties:
+            type: string
+            description: "In case fetching one or more engagement failed, this will\
+              \ show why it failed. There may be more than one description if several\
+              \ engagements failed."
+            example: Timeout
+          description: "In case fetching one or more engagement failed, this will\
+            \ show why it failed. There may be more than one description if several\
+            \ engagements failed."
+          example: Timeout
+        status:
+          type: string
+          description: If fetching all engagements went "OK" or "NOK". A "NOK" may
+            still return engagements but indicates that the information is incomplete.
+          example: OK
+          enum:
+          - OK
+          - NOK
+    Engagement:
+      type: object
+      properties:
+        organizationName:
+          type: string
+          description: Name of the organization
+          example: Styrbjörns båtar
+        organizationNumber:
+          type: string
+          description: "Organization number, may also be personal number in case of\
+            \ enskild firma"
+          example: "2021005448"
+        organizationId:
+          type: string
+          description: Unique id for the organization (UUID)
+          example: bab17d8b-af38-4531-967c-083f15ca1571
+      description: Represents a persons business engagement.
+  securitySchemes: {}

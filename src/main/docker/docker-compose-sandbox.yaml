@@ -1,0 +1,27 @@
+version: '3'
+services:
+  businessengagements:
+    container_name: 'ms-businessengagements-sandbox'
+    image: 'ms-businessengagements:latest'
+    network_mode: bridge
+    restart: always
+    depends_on:
+      - business-engagements-wiremock
+    links:
+      - business-engagements-wiremock:wiremock
+    build:
+      context: .
+    ports:
+      - '8727:8080'
+    environment:
+      - spring_profiles_active=sandbox
+      - "JAVA_OPTS=-Xms256m -Xmx256m"
+
+  business-engagements-wiremock:
+    image: wiremock/wiremock:2.32.0
+    network_mode: bridge
+    restart: always
+    expose:
+      - '8080'
+    volumes:
+      - $PWD/src/test/resources/sandbox/wiremock:/home/wiremock

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="false" scanPeriod="60 seconds">
+
+    <jmxConfigurator/>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%date{ISO8601}){faint} [%t] %12X{X-Request-ID} %clr(%5p) %clr(%-40.40logger{39}){cyan} %m%n%xEx" />
+    <property name="FILE_LOG_PATTERN" value="%date{ISO8601} [%t] %12X{X-Request-ID} %5p %-40.40logger{39} %m%n%xEx" />
+    <property name="MAX_HISTORY" value="550" />
+    <property name="OLD_DIR" value="old" />
+    <property name="MAX_LOG_FILE_SIZE" value="500MB"/>
+    <!-- LOG_PATH will be picked up by application.properties -> logging.path, how ever during loading this might not yet, there for adding default value here -->
+    <property name="DEFAULT_LOG_PATH" value="${LOG_PATH:-log}"/>
+
+    <!-- Enables console logging -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <!-- spring.log (only this exact file name) will be picked up by spring boot admin so that the log can be viewed directly in spring boot admin ui -->
+    <appender name="SPRING_ROOT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEFAULT_LOG_PATH}/spring.log</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${DEFAULT_LOG_PATH}/${OLD_DIR}/spring.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <maxFileSize>${MAX_LOG_FILE_SIZE}</maxFileSize>
+            <MaxHistory>${MAX_HISTORY}</MaxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="COMMUNICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEFAULT_LOG_PATH}/communication.log</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${DEFAULT_LOG_PATH}/${OLD_DIR}/communication.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <maxFileSize>${MAX_LOG_FILE_SIZE}</maxFileSize>
+            <MaxHistory>${MAX_HISTORY}</MaxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEFAULT_LOG_PATH}/error.log</file>
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${DEFAULT_LOG_PATH}/${OLD_DIR}/error.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <maxFileSize>${MAX_LOG_FILE_SIZE}</maxFileSize>
+            <MaxHistory>${MAX_HISTORY}</MaxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <logger name="se.sundsvall.businessengagements" additivity="false" level="INFO">
+        <appender-ref ref="SPRING_ROOT" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <logger name="se.sundsvall.dept44.payload" additivity="false" level="TRACE">
+        <appender-ref ref="SPRING_ROOT" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="SPRING_ROOT" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ERROR" />
+    </root>
+
+</configuration>

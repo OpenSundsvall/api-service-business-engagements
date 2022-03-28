@@ -1,0 +1,7 @@
+{
+  "statusDescriptions": {
+    "No response from underlying system.": "Kan inte upprätta anslutning med dataproducenten",
+    "Timeout.": "Underliggande system Y överskred begärd svarstid"
+  },
+  "status": "NOK"
+}

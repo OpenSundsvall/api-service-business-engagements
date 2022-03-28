@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbt/fel" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbt/fel" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="fel">
+		<xs:sequence>
+			<xs:element ref="FelKod" minOccurs="0"/>
+			<xs:element ref="FelBeskrivning" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Typ" type="felTyp" use="required"/>
+		<xs:attribute name="Kalla" type="felKalla" use="required"/>
+	</xs:complexType>
+	<xs:simpleType name="felKalla">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Dataproducent"/>
+			<xs:enumeration value="Formedlare"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="felKod">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="felTyp">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EjBehorig"/>
+			<xs:enumeration value="EjKomplettSvar"/>
+			<xs:enumeration value="ForetagFinnsEj"/>
+			<xs:enumeration value="OgiltigBegaran"/>
+			<xs:enumeration value="OgiltigtSvar"/>
+			<xs:enumeration value="OtillgangligUppgiftskalla"/>
+			<xs:enumeration value="Timeout"/>
+			<xs:enumeration value="TvetydigBegaran"/>
+			<xs:enumeration value="UppgiftFinnsEj"/>
+			<xs:enumeration value="Odefinierad"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Fel" type="fel"/>
+	<xs:element name="FelBeskrivning" type="xs:string"/>
+	<xs:element name="FelKod" type="felKod"/>
+</xs:schema>

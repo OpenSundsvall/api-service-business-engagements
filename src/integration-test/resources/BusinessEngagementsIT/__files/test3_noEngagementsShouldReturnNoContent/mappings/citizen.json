@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/citizenmapping/e57ea0ee-4132-11ec-973a-0242ac130003/personalnumber"
+    },
+    "response": {
+        "body": "198000000003",
+        "headers": {
+            "Content-Type": "text/plain"
+        },
+        "status": "200"
+    }
+}

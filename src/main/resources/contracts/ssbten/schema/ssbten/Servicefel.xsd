@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbten/servicefel" xmlns:md="http://schema.bolagsverket.se/ssbt/metadata" xmlns:fel="http://schema.bolagsverket.se/ssbt/fel" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbten/servicefel" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.5.0">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/metadata" schemaLocation="../ssbt/Metadata.xsd"/>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/fel" schemaLocation="../ssbt/Fel.xsd"/>
+	<xs:complexType name="servicefel">
+		<xs:sequence>
+			<xs:element ref="ServicefelMetadata"/>
+			<xs:element ref="ServicefelDetaljer"/>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="md:schemaVersion" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="servicefelDetaljer">
+		<xs:sequence>
+			<xs:element ref="fel:Fel"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="servicefelMetadata">
+		<xs:sequence>
+			<xs:element ref="md:MeddelandeId"/>
+			<xs:element ref="md:TransaktionId" minOccurs="0"/>
+			<xs:element ref="md:Tidstampel"/>
+			<xs:element ref="md:Datakonsument" minOccurs="0"/>
+			<xs:element ref="md:Dataproducent" minOccurs="0"/>
+			<xs:element ref="md:Anvandare" minOccurs="0"/>
+			<xs:element ref="md:Formedlare" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Servicefel" type="servicefel"/>
+	<xs:element name="ServicefelDetaljer" type="servicefelDetaljer"/>
+	<xs:element name="ServicefelMetadata" type="servicefelMetadata"/>
+</xs:schema>

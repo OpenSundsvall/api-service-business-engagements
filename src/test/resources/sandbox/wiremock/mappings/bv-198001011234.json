@@ -1,0 +1,35 @@
+{
+    "request": {
+        "bodyPatterns": [
+            {
+                "matchesXPath": "//*[for:PersonIdentitetsbeteckning]//*[for:Personnummer='198001011234']",
+                "xPathNamespaces": {
+                    "for": "http://schema.bolagsverket.se/ssbt/foretag"
+                }
+            }
+        ],
+        "method": "POST",
+        "url": "/bolagsverket"
+    },
+    "response": {
+        "bodyFileName": "../__files/bv/198001011234.xml",
+        "headers": {
+            "Connection": [
+                "keep-alive"
+            ],
+            "Content-Type": [
+                "text/xml"
+            ],
+            "Keep-Alive": [
+                "timeout=60"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Content-Encoding": [
+                ""
+            ]
+        },
+        "status": 200
+    }
+}

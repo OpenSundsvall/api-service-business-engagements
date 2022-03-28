@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbt/foretag" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbt/foretag" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="aktiekapital">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="Redovisningsvaluta" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="aktier">
+		<xs:sequence>
+			<xs:element ref="AktierAntal" minOccurs="0"/>
+			<xs:element ref="Aktiekapital" minOccurs="0"/>
+			<xs:element ref="Aktieslag" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="aktieslag">
+		<xs:sequence>
+			<xs:element ref="AktieslagBeteckning"/>
+			<xs:element ref="AktieslagAntal"/>
+			<xs:element ref="AktieslagRostvarde" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="antalAnstalldaStorleksklass">
+		<xs:sequence>
+			<xs:element ref="AntalAnstalldaStorleksklassKod"/>
+			<xs:element ref="AntalAnstalldaStorleksklassBeskrivning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="arsomsattningStorleksklass">
+		<xs:sequence>
+			<xs:element ref="ArsomsattningStorleksklassKod"/>
+			<xs:element ref="ArsomsattningStorleksklassBeskrivning"/>
+			<xs:element ref="Omsattningsar"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="avveckling">
+		<xs:sequence>
+			<xs:element ref="AvvecklingKod"/>
+			<xs:element ref="AvvecklingBeskrivning"/>
+			<xs:element ref="AvvecklingDatum" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="Typ" type="avvecklingTyp" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="avvecklingAvfordAnledning">
+		<xs:complexContent>
+			<xs:extension base="avveckling"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="avvecklingsforfarande">
+		<xs:sequence>
+			<xs:element ref="AvvecklingAvfordAnledning" minOccurs="0"/>
+			<xs:element ref="Avveckling" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="belagenhetsadress">
+		<xs:sequence>
+			<xs:element ref="Lan" minOccurs="0"/>
+			<xs:element ref="Kommun" minOccurs="0"/>
+			<xs:element ref="Adressomrade" minOccurs="0"/>
+			<xs:element ref="Adressplats" minOccurs="0"/>
+			<xs:element ref="Postnummer" minOccurs="0"/>
+			<xs:element ref="Postort" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretagsform">
+		<xs:sequence>
+			<xs:element ref="ForetagsformKod"/>
+			<xs:element ref="ForetagsformBeskrivning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fornamn">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Tilltalsnamn" type="jaNej"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="funktionar">
+		<xs:sequence>
+			<xs:element ref="FunktionarKod"/>
+			<xs:element ref="FunktionarBeskrivning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fysiskPersonNamn">
+		<xs:sequence>
+			<xs:element ref="Fornamn" maxOccurs="unbounded"/>
+			<xs:element ref="Mellannamn" minOccurs="0"/>
+			<xs:element ref="Efternamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="juridiskForm">
+		<xs:sequence>
+			<xs:element ref="JuridiskFormKod"/>
+			<xs:element ref="JuridiskFormBeskrivning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="manadDag">
+		<xs:sequence>
+			<xs:element ref="Manad"/>
+			<xs:element ref="Dag"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personIdentitetsbeteckning">
+		<xs:choice>
+			<xs:element ref="GDNummer"/>
+			<xs:element ref="Organisationsnummer"/>
+			<xs:element ref="Personnummer"/>
+			<xs:element ref="Samordningsnummer"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="postadress">
+		<xs:sequence>
+			<xs:element ref="Utdelningsadress1" minOccurs="0"/>
+			<xs:element ref="Utdelningsadress2" minOccurs="0"/>
+			<xs:element ref="COAdress" minOccurs="0"/>
+			<xs:element ref="Postnummer" minOccurs="0"/>
+			<xs:element ref="Postort" minOccurs="0"/>
+			<xs:element ref="Land" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kommun">
+		<xs:sequence>
+			<xs:element ref="KommunKod"/>
+			<xs:element ref="KommunNamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lan">
+		<xs:sequence>
+			<xs:element ref="LanKod"/>
+			<xs:element ref="LanNamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="namnskydd">
+		<xs:sequence>
+			<xs:element ref="Namnskyddslopnummer"/>
+			<xs:element ref="ForetagNamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rakenskapsar">
+		<xs:sequence>
+			<xs:element ref="RakenskapsarFrom"/>
+			<xs:element ref="RakenskapsarTom"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sni">
+		<xs:sequence>
+			<xs:element ref="SNIKod"/>
+			<xs:element ref="SNIBeskrivning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="antalAnstalldaStorleksklassKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="arsomsattningStorleksklassKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="avvecklingKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="avvecklingTyp">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DelningOverlatande"/>
+			<xs:enumeration value="DelningOvertagande"/>
+			<xs:enumeration value="Foretagsrekonstruktion"/>
+			<xs:enumeration value="FusionOverlatande"/>
+			<xs:enumeration value="FusionOvertagande"/>
+			<xs:enumeration value="Konkurs"/>
+			<xs:enumeration value="Likvidation"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="cfarNummer">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dag">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="31"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="foretagsformKod">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="funktionarKod">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="gdNummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="jaNej">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ja"/>
+			<xs:enumeration value="Nej"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="juridiskFormKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="kommunKod">
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lanKod">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="manad">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="namnskyddslopnummer">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="omsattningsar">
+		<xs:restriction base="xs:int" />
+	</xs:simpleType>
+	<xs:simpleType name="organisationsnummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="personnummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="postnummer">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5"/>
+			<xs:pattern value="[0-9]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="samordningsnummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sniKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Adressomrade" type="xs:string"/>
+	<xs:element name="Adressplats" type="xs:string"/>
+	<xs:element name="Aktier" type="aktier"/>
+	<xs:element name="AktierAntal" type="xs:integer"/>
+	<xs:element name="Aktiekapital" type="aktiekapital"/>
+	<xs:element name="Aktieslag" type="aktieslag"/>
+	<xs:element name="AktieslagBeteckning" type="xs:string"/>
+	<xs:element name="AktieslagAntal" type="xs:integer"/>
+	<xs:element name="AktieslagRostvarde" type="xs:string"/>
+	<xs:element name="AntalAnstalldaStorleksklass" type="antalAnstalldaStorleksklass"/>
+	<xs:element name="AntalAnstalldaStorleksklassBeskrivning" type="xs:string"/>
+	<xs:element name="AntalAnstalldaStorleksklassKod" type="antalAnstalldaStorleksklassKod"/>
+	<xs:element name="Arbetsgivarregistrerad" type="jaNej"/>
+	<xs:element name="ArbetsstalleBenamning" type="xs:string"/>
+	<xs:element name="ArsomsattningStorleksklass" type="arsomsattningStorleksklass"/>
+	<xs:element name="ArsomsattningStorleksklassBeskrivning" type="xs:string"/>
+	<xs:element name="ArsomsattningStorleksklassKod" type="arsomsattningStorleksklassKod"/>
+	<xs:element name="Avveckling" type="avveckling"/>
+	<xs:element name="AvvecklingAvfordAnledning" type="avvecklingAvfordAnledning"/>
+	<xs:element name="AvvecklingBeskrivning" type="xs:string"/>
+	<xs:element name="AvvecklingDatum" type="xs:date"/>
+	<xs:element name="AvvecklingKod" type="avvecklingKod"/>
+	<xs:element name="Avvecklingsforfarande" type="avvecklingsforfarande"/>
+	<xs:element name="Belagenhetsadress" type="belagenhetsadress"/>
+	<xs:element name="CFARNummer" type="cfarNummer"/>
+	<xs:element name="COAdress" type="xs:string"/>
+	<xs:element name="Dag" type="dag"/>
+	<xs:element name="EnskildNaringsverksamhet" type="jaNej"/>
+	<xs:element name="EPostAdress" type="xs:string"/>
+	<xs:element name="Efternamn" type="xs:string"/>
+	<xs:element name="Firmatecknare" type="jaNej"/>
+	<xs:element name="FirmateckningBeskrivning" type="xs:string"/>
+	<xs:element name="Fodelsedatum" type="xs:date"/>
+	<xs:element name="ForetagAvregistreratDatum" type="xs:date"/>
+	<xs:element name="ForetagNamn" type="xs:string"/>
+	<xs:element name="ForetagRegistreratDatum" type="xs:date"/>
+	<xs:element name="Foretagsform" type="foretagsform"/>
+	<xs:element name="ForetagsformBeskrivning" type="xs:string"/>
+	<xs:element name="ForetagsformKod" type="foretagsformKod"/>
+	<xs:element name="Fornamn" type="fornamn"/>
+	<xs:element name="Funktionar" type="funktionar"/>
+	<xs:element name="FunktionarKod" type="funktionarKod"/>
+	<xs:element name="FunktionarBeskrivning" type="xs:string"/>
+	<xs:element name="FysiskPersonNamn" type="fysiskPersonNamn"/>
+	<xs:element name="GDNummer" type="gdNummer"/>
+	<xs:element name="JuridiskForm" type="juridiskForm"/>
+	<xs:element name="JuridiskFormKod" type="juridiskFormKod"/>
+	<xs:element name="JuridiskFormBeskrivning" type="xs:string"/>
+	<xs:element name="Kommun" type="kommun"/>
+	<xs:element name="KommunKod" type="kommunKod"/>
+	<xs:element name="KommunNamn" type="xs:string"/>
+	<xs:element name="Lan" type="lan"/>
+	<xs:element name="Land" type="xs:string"/>
+	<xs:element name="LanKod" type="lanKod"/>
+	<xs:element name="LanNamn" type="xs:string"/>
+	<xs:element name="Manad" type="manad"/>
+	<xs:element name="Mellannamn" type="xs:string"/>
+	<xs:element name="Momsregistrerad" type="jaNej"/>
+	<xs:element name="Namnskydd" type="namnskydd"/>
+	<xs:element name="Namnskyddslopnummer" type="namnskyddslopnummer"/>
+	<xs:element name="Omsattningsar" type="omsattningsar"/>
+	<xs:element name="Organisationsnummer" type="organisationsnummer"/>
+	<xs:element name="PersonIdentitetsbeteckning" type="personIdentitetsbeteckning"/>
+	<xs:element name="Personnummer" type="personnummer"/>
+	<xs:element name="Postadress" type="postadress"/>
+	<xs:element name="Postnummer" type="postnummer"/>
+	<xs:element name="Postort" type="xs:string"/>
+	<xs:element name="Rakenskapsar" type="rakenskapsar"/>
+	<xs:element name="RakenskapsarFrom" type="manadDag"/>
+	<xs:element name="RakenskapsarTom" type="manadDag"/>
+	<xs:element name="Samordningsnummer" type="samordningsnummer"/>
+	<xs:element name="Skatteform" type="jaNej"/>
+	<xs:element name="SNI" type="sni"/>
+	<xs:element name="SNIBeskrivning" type="xs:string"/>
+	<xs:element name="SNIKod" type="sniKod"/>
+	<xs:element name="Telefonnummer" type="xs:string"/>
+	<xs:element name="Utdelningsadress1" type="xs:string"/>
+	<xs:element name="Utdelningsadress2" type="xs:string"/>
+	<xs:element name="Verksamhetsbeskrivning" type="xs:string"/>
+</xs:schema>

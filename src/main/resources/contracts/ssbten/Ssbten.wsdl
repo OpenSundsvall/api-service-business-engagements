@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://schema.bolagsverket.se/ssbten" xmlns:en="http://schema.bolagsverket.se/ssbten/engagemang" xmlns:sf="http://schema.bolagsverket.se/ssbten/servicefel"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://schema.bolagsverket.se/ssbten">
+	<wsdl:documentation>SSBTEN version 1.5.0 (ssbt-schema build version 1.5.7)</wsdl:documentation>
+	
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="http://schema.bolagsverket.se/ssbten/engagemang" schemaLocation="schema/ssbten/Engagemang.xsd"/>
+			<xs:import namespace="http://schema.bolagsverket.se/ssbten/servicefel" schemaLocation="schema/ssbten/Servicefel.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="EngagemangBegaran">
+		<wsdl:part name="Message" element="en:EngagemangBegaran"/>
+	</wsdl:message>
+	<wsdl:message name="EngagemangSvar">
+		<wsdl:part name="Message" element="en:EngagemangSvar"/>
+	</wsdl:message>
+	<wsdl:message name="ServicefelException">
+		<wsdl:part name="Message" element="sf:Servicefel"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="SsbtenService">
+		<wsdl:operation name="GetForetagsengagemang">
+			<wsdl:input message="EngagemangBegaran"/>
+			<wsdl:output message="EngagemangSvar"/>
+			<wsdl:fault name="Fault" message="ServicefelException"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:binding name="SsbtenServiceHttpBinding" type="SsbtenService">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetForetagsengagemang">
+			<wsdlsoap:operation soapAction="urn:GetForetagsengagemang" style="document"/>
+			<wsdl:input>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="Fault">
+				<wsdlsoap:fault name="Fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	<wsdl:service name="SsbtenServicePorts">
+		<wsdl:port name="SsbtenService" binding="SsbtenServiceHttpBinding">
+ 			<wsdlsoap:address location="https://serviceadress"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+</wsdl:definitions>

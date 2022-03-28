@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbten/engagemang" xmlns:md="http://schema.bolagsverket.se/ssbt/metadata" xmlns:iumf="http://schema.bolagsverket.se/ssbt/foretag" xmlns:fel="http://schema.bolagsverket.se/ssbt/fel" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbten/engagemang" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.5.0">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/metadata" schemaLocation="../ssbt/Metadata.xsd"/>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/foretag" schemaLocation="../ssbt/Foretag.xsd"/>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/fel" schemaLocation="../ssbt/Fel.xsd"/>
+	<xs:complexType name="engagemangBegaran">
+		<xs:sequence>
+			<xs:element ref="EngagemangBegaranMetadata"/>
+			<xs:element ref="EngagemangBegaranDetaljer" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="md:schemaVersion" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="engagemangBegaranDetaljer">
+		<xs:sequence>
+			<xs:element ref="PersonId"/>
+			<xs:element ref="Foretagsformer"/>
+			<xs:element ref="ForetagId" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="engagemangBegaranMetadata">
+		<xs:sequence>
+			<xs:element ref="md:MeddelandeId"/>
+			<xs:element ref="md:TransaktionId"/>
+			<xs:element ref="md:Tidstampel"/>
+			<xs:element ref="md:TTL" minOccurs="0"/>
+			<xs:element ref="md:Datakonsument"/>
+			<xs:element ref="md:Anvandare"/>
+			<xs:element ref="md:Formedlare" minOccurs="0"/>
+			<xs:element ref="md:Anvandningsomrade" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="engagemangSvar">
+		<xs:sequence>
+			<xs:element ref="EngagemangSvarMetadata"/>
+			<xs:element ref="EngagemangSvarDetaljer" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="SchemaVersion" type="md:schemaVersion" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="engagemangSvarDetaljer">
+		<xs:sequence>
+			<xs:element ref="PersonId"/>
+			<xs:element ref="ForetagEngagemang" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="engagemangSvarMetadata">
+		<xs:sequence>
+			<xs:element ref="md:MeddelandeId"/>
+			<xs:element ref="md:TransaktionId"/>
+			<xs:element ref="md:Tidstampel"/>
+			<xs:element ref="md:Datakonsument"/>
+			<xs:element ref="md:Dataproducent" minOccurs="0"/>
+			<xs:element ref="md:Anvandare"/>
+			<xs:element ref="md:Formedlare" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretag">
+		<xs:sequence>
+			<xs:element ref="ForetagId"/>
+			<xs:choice minOccurs="0">
+				<xs:element ref="iumf:ForetagNamn"/>
+				<xs:element ref="iumf:Namnskydd" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element ref="iumf:Foretagsform"/>
+			<xs:element ref="iumf:EnskildNaringsverksamhet" minOccurs="0"/>
+			<xs:element ref="iumf:ForetagAvregistreratDatum" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretagEngagemang">
+		<xs:sequence>
+			<xs:element ref="ForetagEngagemangMetadata" minOccurs="0"/>
+			<xs:choice>
+				<xs:element ref="Foretag" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="fel:Fel"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretagEngagemangMetadata">
+		<xs:sequence>
+			<xs:element ref="md:Dataproducent"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretagId">
+		<xs:sequence>
+			<xs:element ref="iumf:PersonIdentitetsbeteckning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="foretagsformer">
+		<xs:sequence>
+			<xs:element ref="iumf:ForetagsformKod" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="allaEnskilda" type="xs:boolean" default="false">
+			<xs:annotation>
+				<xs:documentation>Om man skall retunera alla E även de som är avslutade true</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="personId">
+		<xs:sequence>
+			<xs:element ref="iumf:PersonIdentitetsbeteckning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EngagemangBegaran" type="engagemangBegaran"/>
+	<xs:element name="EngagemangBegaranDetaljer" type="engagemangBegaranDetaljer"/>
+	<xs:element name="EngagemangBegaranMetadata" type="engagemangBegaranMetadata"/>
+	<xs:element name="EngagemangSvar" type="engagemangSvar"/>
+	<xs:element name="EngagemangSvarDetaljer" type="engagemangSvarDetaljer"/>
+	<xs:element name="EngagemangSvarMetadata" type="engagemangSvarMetadata"/>
+	<xs:element name="Foretag" type="foretag"/>
+	<xs:element name="ForetagEngagemang" type="foretagEngagemang"/>
+	<xs:element name="ForetagEngagemangMetadata" type="foretagEngagemangMetadata"/>
+	<xs:element name="ForetagId" type="foretagId"/>
+	<xs:element name="Foretagsformer" type="foretagsformer"/>
+	<xs:element name="PersonId" type="personId"/>
+</xs:schema>

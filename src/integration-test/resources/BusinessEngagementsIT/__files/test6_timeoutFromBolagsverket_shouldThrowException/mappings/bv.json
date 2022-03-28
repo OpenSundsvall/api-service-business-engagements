@@ -1,0 +1,35 @@
+{
+    "request": {
+        "bodyPatterns": [
+            {
+                "matchesXPath": "//*[for:PersonIdentitetsbeteckning]//*[for:Personnummer='198000000007']",
+                "xPathNamespaces": {
+                    "for": "http://schema.bolagsverket.se/ssbt/foretag"
+                }
+            }
+        ],
+        "method": "POST",
+        "url": "/bolagsverket"
+    },
+    "response": {
+        "headers": {
+            "Connection": [
+                "keep-alive"
+            ],
+            "Content-Type": [
+                "text/xml;charset=UTF-8"
+            ],
+            "Keep-Alive": [
+                "timeout=60"
+            ],
+            "Transfer-Encoding": [
+                "chunked"
+            ],
+            "Content-Encoding": [
+                ""
+            ]
+        },
+        "fixedDelayMilliseconds": 2000,
+        "status": 200
+    }
+}

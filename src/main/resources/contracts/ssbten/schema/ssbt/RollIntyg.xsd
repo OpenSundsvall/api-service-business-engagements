@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbt/rollintyg" xmlns:md="http://schema.bolagsverket.se/ssbt/metadata" xmlns:iumf="http://schema.bolagsverket.se/ssbt/foretag" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbt/rollintyg" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.5.0">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/metadata" schemaLocation="Metadata.xsd"/>
+	<xs:import namespace="http://schema.bolagsverket.se/ssbt/foretag" schemaLocation="Foretag.xsd"/>
+	<xs:complexType name="roll">
+		<xs:sequence>
+			<xs:element ref="iumf:Firmatecknare"/>
+			<xs:element ref="iumf:Funktionar" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntyg">
+		<xs:sequence>
+			<xs:element ref="RollIntygMetadata"/>
+			<xs:element ref="Roll"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntygMetadata">
+		<xs:sequence>
+			<xs:element ref="RollIntygId"/>
+			<xs:element ref="RollIntygUtfardat"/>
+			<xs:element ref="RollIntygUtfardatAv"/>
+			<xs:element ref="RollIntygUtfardatTill"/>
+			<xs:element ref="RollIntygUtfardatForPerson"/>
+			<xs:element ref="RollIntygUtfardatForForetag"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntygUtfardatForForetag">
+		<xs:sequence>
+			<xs:element ref="iumf:PersonIdentitetsbeteckning"/>
+			<xs:element ref="iumf:Namnskyddslopnummer" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntygUtfardatForPerson">
+		<xs:sequence>
+			<xs:element ref="iumf:PersonIdentitetsbeteckning"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntygUtfardatAv">
+		<xs:sequence>
+			<xs:element ref="md:Dataproducent"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rollIntygUtfardatTill">
+		<xs:sequence>
+			<xs:element ref="md:Datakonsument"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Roll" type="roll"/>
+	<xs:element name="RollIntyg" type="rollIntyg"/>
+	<xs:element name="RollIntygId" type="md:uuid"/>
+	<xs:element name="RollIntygMetadata" type="rollIntygMetadata"/>
+	<xs:element name="RollIntygUtfardat" type="xs:dateTime"/>
+	<xs:element name="RollIntygUtfardatForForetag" type="rollIntygUtfardatForForetag"/>
+	<xs:element name="RollIntygUtfardatForPerson" type="rollIntygUtfardatForPerson"/>
+	<xs:element name="RollIntygUtfardatAv" type="rollIntygUtfardatAv"/>
+	<xs:element name="RollIntygUtfardatTill" type="rollIntygUtfardatTill"/>
+</xs:schema>

@@ -1,0 +1,41 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Server</faultcode>
+         <faultstring>Något Fel från bolagsverket med bra beskrivning....</faultstring>
+         <detail>
+            <ns5:Servicefel SchemaVersion="1.4.0" xmlns:ns5="http://schema.bolagsverket.se/ssbten/servicefel" xmlns:ns4="http://schema.bolagsverket.se/ssbt/fel" xmlns:ns3="http://schema.bolagsverket.se/ssbt/foretag" xmlns:ns2="http://schema.bolagsverket.se/ssbten/engagemang" xmlns="http://schema.bolagsverket.se/ssbt/metadata">
+               <ns5:ServicefelMetadata>
+                  <MeddelandeId>08d9bc21-c568-4f73-abb1-207df17ca29a</MeddelandeId>
+                  <TransaktionId>eac6bd2c-e402-40da-9139-646de139fe32</TransaktionId>
+                  <Tidstampel>2021-10-21T16:26:33.928+02:00</Tidstampel>
+                  <Datakonsument>
+                     <PartId>
+                        <Organisationsnummer>2120002411</Organisationsnummer>
+                     </PartId>
+                     <PartNamn>Sundsvalls@Kommun</PartNamn>
+                     <Service>
+                        <ServiceNamn>Business@Engagements</ServiceNamn>
+                     </Service>
+                  </Datakonsument>
+                  <Anvandare>
+                     <PartId>
+                        <Personnummer>198000000009</Personnummer>
+                     </PartId>
+                     <PartNamn>Person</PartNamn>
+                  </Anvandare>
+                  <Formedlare>
+                     <PartId>
+                        <Organisationsnummer>2021005489</Organisationsnummer>
+                     </PartId>
+                     <PartNamn>Bolagsverket</PartNamn>
+                     <Service>
+                        <ServiceNamn>Bolagsverket</ServiceNamn>
+                     </Service>
+                  </Formedlare>
+               </ns5:ServicefelMetadata>
+            </ns5:Servicefel>
+         </detail>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>

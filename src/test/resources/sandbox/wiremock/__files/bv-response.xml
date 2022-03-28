@@ -1,0 +1,149 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <ns2:EngagemangSvar SchemaVersion="1.4.0" xmlns="http://schema.bolagsverket.se/ssbt/metadata" xmlns:ns2="http://schema.bolagsverket.se/ssbten/engagemang" xmlns:ns3="http://schema.bolagsverket.se/ssbt/foretag" xmlns:ns4="http://schema.bolagsverket.se/ssbt/fel" xmlns:ns5="http://schema.bolagsverket.se/ssbten/servicefel">
+         <ns2:EngagemangSvarMetadata>
+            <MeddelandeId>43b624f3-8b5b-4f58-9172-c30b3d3d36ea</MeddelandeId>
+            <TransaktionId>eac6bd2c-e402-40da-9139-646de139fe32</TransaktionId>
+            <Tidstampel>2021-10-21T14:17:16.864+02:00</Tidstampel>
+            <Datakonsument>
+               <PartId>
+                  <Organisationsnummer>2120002411</Organisationsnummer>
+               </PartId>
+               <PartNamn>Sundsvalls@Kommun</PartNamn>
+               <Service>
+                  <ServiceNamn>Business@Engagements</ServiceNamn>
+               </Service>
+            </Datakonsument>
+            <Anvandare>
+               <PartId>
+                  <Personnummer>194307199069</Personnummer>
+               </PartId>
+               <PartNamn>Person</PartNamn>
+            </Anvandare>
+            <Formedlare>
+               <PartId>
+                  <Organisationsnummer>2021005489</Organisationsnummer>
+               </PartId>
+               <PartNamn>Bolagsverket</PartNamn>
+               <Service>
+                  <ServiceNamn>SSBTEN</ServiceNamn>
+               </Service>
+            </Formedlare>
+         </ns2:EngagemangSvarMetadata>
+         <ns2:EngagemangSvarDetaljer>
+            <ns2:PersonId>
+               <ns3:PersonIdentitetsbeteckning>
+                  <ns3:Personnummer>198001011234</ns3:Personnummer>
+               </ns3:PersonIdentitetsbeteckning>
+            </ns2:PersonId>
+            <ns2:ForetagEngagemang>
+               <ns2:ForetagEngagemangMetadata>
+                  <Dataproducent>
+                     <PartId>
+                        <Organisationsnummer>2021005489</Organisationsnummer>
+                     </PartId>
+                     <PartNamn>Bolagsverket</PartNamn>
+                  </Dataproducent>
+               </ns2:ForetagEngagemangMetadata>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Personnummer>198001011234</ns3:Personnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:Namnskydd>
+                     <ns3:Namnskyddslopnummer>1</ns3:Namnskyddslopnummer>
+                     <ns3:ForetagNamn>Jons barnvagnar</ns3:ForetagNamn>
+                  </ns3:Namnskydd>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>E</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>enskild näringsidkare</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+               </ns2:Foretag>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Personnummer>198001011234</ns3:Personnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:Namnskydd>
+                     <ns3:Namnskyddslopnummer>2</ns3:Namnskyddslopnummer>
+                     <ns3:ForetagNamn>Jons skämtartiklar</ns3:ForetagNamn>
+                  </ns3:Namnskydd>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>E</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>enskild näringsidkare</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+               </ns2:Foretag>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Organisationsnummer>5560000002</ns3:Organisationsnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:ForetagNamn>Mystery Productions AB</ns3:ForetagNamn>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>AB</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>aktiebolag</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+               </ns2:Foretag>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Organisationsnummer>5560000003</ns3:Organisationsnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:ForetagNamn>Biotech AB</ns3:ForetagNamn>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>AB</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>aktiebolag</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+               </ns2:Foretag>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Organisationsnummer>7691234567</ns3:Organisationsnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:ForetagNamn>Bostadsrättsföreningen Simsalabim</ns3:ForetagNamn>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>BRF</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>bostadsrättsförening</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+               </ns2:Foretag>
+
+            </ns2:ForetagEngagemang>
+            <ns2:ForetagEngagemang>
+               <ns2:ForetagEngagemangMetadata>
+                  <Dataproducent>
+                     <PartId>
+                        <Organisationsnummer>2021005448</Organisationsnummer>
+                     </PartId>
+                     <PartNamn>Skatteverket</PartNamn>
+                  </Dataproducent>
+               </ns2:ForetagEngagemangMetadata>
+
+               <ns2:Foretag>
+                  <ns2:ForetagId>
+                     <ns3:PersonIdentitetsbeteckning>
+                        <ns3:Personnummer>198001011234</ns3:Personnummer>
+                     </ns3:PersonIdentitetsbeteckning>
+                  </ns2:ForetagId>
+                  <ns3:ForetagNamn>Enskild näringsverksamhet</ns3:ForetagNamn>
+                  <ns3:Foretagsform>
+                     <ns3:ForetagsformKod>E</ns3:ForetagsformKod>
+                     <ns3:ForetagsformBeskrivning>enskild näringsidkare</ns3:ForetagsformBeskrivning>
+                  </ns3:Foretagsform>
+                  <ns3:EnskildNaringsverksamhet>Ja</ns3:EnskildNaringsverksamhet>
+               </ns2:Foretag>
+               
+            </ns2:ForetagEngagemang>
+         </ns2:EngagemangSvarDetaljer>
+      </ns2:EngagemangSvar>
+   </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,13 @@
+{
+  "engagements": [
+    {
+      "organizationName": "Enskild näringsverksamhet",
+      "organizationNumber": "198000000002",
+      "organizationId": "${json-unit.any-string}"
+    }
+  ],
+  "statusDescriptions": {
+    "Timeout.": "Underliggande system X överskred begärd svarstid"
+  },
+  "status": "NOK"
+}

@@ -1,0 +1,5 @@
+{
+  "title": "Error while getting digital engagements from bolagsverket",
+  "status": 500,
+  "detail": "Error while calling SOAP-service: Något Fel från bolagsverket med bra beskrivning...."
+}

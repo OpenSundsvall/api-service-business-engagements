@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://schema.bolagsverket.se/ssbt/metadata" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schema.bolagsverket.se/ssbt/metadata" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>ssbt-schema build version 1.5.7</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="datakonsument">
+		<xs:complexContent>
+			<xs:extension base="servicePart">
+				<xs:sequence>
+					<xs:element ref="JuridiskForm" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="juridiskForm">
+		<xs:sequence>
+			<xs:element ref="JuridiskFormKod"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="part">
+		<xs:sequence>
+			<xs:element ref="PartId"/>
+			<xs:element ref="PartNamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="partId">
+		<xs:choice>
+			<xs:element ref="Organisationsnummer"/>
+			<xs:element ref="Personnummer"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="schemaVersion">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="service">
+		<xs:sequence>
+			<xs:element ref="ServiceNamn"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="servicePart">
+		<xs:complexContent>
+			<xs:extension base="part">
+				<xs:sequence>
+					<xs:element ref="Service" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ttl">
+		<xs:simpleContent>
+			<xs:extension base="ttlTid">
+				<xs:attribute name="Tidsenhet" type="tidsenhet" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="anvandningsomrade">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DirektAteranvandning"/>
+			<xs:enumeration value="IndirektAteranvandning"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="juridiskFormKod">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="organisationsnummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="personnummer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="s255">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tidsenhet">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Millisekunder"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ttlTid">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="uuid">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="Anvandare" type="part"/>
+	<xs:element name="Anvandningsomrade" type="anvandningsomrade"/>
+	<xs:element name="Datakonsument" type="datakonsument"/>
+	<xs:element name="Dataproducent" type="servicePart"/>
+	<xs:element name="Formedlare" type="servicePart"/>
+	<xs:element name="JuridiskForm" type="juridiskForm"/>
+	<xs:element name="JuridiskFormKod" type="juridiskFormKod"/>
+	<xs:element name="MeddelandeId" type="uuid"/>
+	<xs:element name="Organisationsnummer" type="organisationsnummer"/>
+	<xs:element name="PartId" type="partId"/>
+	<xs:element name="PartNamn" type="s255"/>
+	<xs:element name="Personnummer" type="personnummer"/>
+	<xs:element name="Service" type="service"/>
+	<xs:element name="ServiceNamn" type="s255"/>
+	<xs:element name="Tidstampel" type="xs:dateTime"/>
+	<xs:element name="TransaktionId" type="uuid"/>
+	<xs:element name="TTL" type="ttl"/>
+</xs:schema>

@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>se.sundsvall.dept44</groupId>
+        <artifactId>dept44-service-parent</artifactId>
+        <version>0.13</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>se.sundsvall</groupId>
+    <artifactId>business-engagements</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <name>Business Engagements</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- CI/CD properties -->
+        <docker.image.name>ms-businessengagements</docker.image.name>
+        <exposed.app.port>8080</exposed.app.port>
+        <published.container.port.sandbox>8730</published.container.port.sandbox>
+        <published.container.port.test>8728</published.container.port.test>
+        <published.container.port.production>8727</published.container.port.production>
+
+        <commons-io.version>2.11.0</commons-io.version>
+        <javax.ws.rs-api.version>2.1.1</javax.ws.rs-api.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
+        <mariab-java-client.version>2.7.4</mariab-java-client.version>
+        <microprofile-rest-client-api.version>2.0</microprofile-rest-client-api.version>
+        <zjsonpatch.version>0.4.11</zjsonpatch.version>
+
+        <bolagsverket-generated-sources-folder>${project.build.directory}/bolagsverket-sources</bolagsverket-generated-sources-folder>
+        <citizenmapping-generated-sources-folder>${project.build.directory}/citizenmapping-sources</citizenmapping-generated-sources-folder>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+
+        <!-- Starter -->
+        <dependency>
+            <groupId>se.sundsvall.dept44</groupId>
+            <artifactId>dept44-starter-webclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>se.sundsvall.dept44</groupId>
+            <artifactId>dept44-starter-webservicetemplate</artifactId>
+        </dependency>
+
+        <!-- SB -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${mariab-java-client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>${javax.ws.rs-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.rest.client</groupId>
+            <artifactId>microprofile-rest-client-api</artifactId>
+            <version>${microprofile-rest-client-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb-runtime.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>se.sundsvall.dept44</groupId>
+            <artifactId>dept44-starter-test</artifactId>
+            <!--<scope>test</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.flipkart.zjsonpatch</groupId>
+            <artifactId>zjsonpatch</artifactId>
+            <version>${zjsonpatch.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <!-- Add generated sources from bolagsverket so they're reacheable. -->
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${bolagsverket-generated-sources-folder}</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/se/sundsvall/businessengagements/configuration/**/*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/BusinessEngagements*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/integration/bolagsverket/BolagsverketHealthIndicator*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/integration/bolagsverket/BolagsverketClientConfig*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/integration/bolagsverket/BolagsverketProperties*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/service/mapper/bolagsverket/FormedlareMapper*</exclude>    <!-- Not used, maybe should be deleted -->
+                        <exclude>**/se/sundsvall/businessengagements/integration/SoapFaultInterceptor*</exclude>
+                        <exclude>**/se/sundsvall/businessengagements/integration/BusinessEngagementsHealthIndicator*</exclude>
+                        <!-- Ignore generated sources -->
+                        <exclude>**/se/bolagsverket/**/*</exclude>
+                        <exclude>**/citizenmapping/**/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Generated clients -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <!-- Enables fluent builder for generated classes -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-fluent-api</artifactId>
+                        <version>3.0</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <xjbSources>
+                        <xjbSource>${project.basedir}/src/main/resources/contracts/xjb/ssbten.xjb</xjbSource>
+                    </xjbSources>
+                    <!-- Enable fluent -->
+                    <arguments>
+                        <argument>-Xfluent-api</argument>
+                    </arguments>
+                    <outputDirectory>${bolagsverket-generated-sources-folder}</outputDirectory>
+                    <sourceType>wsdl</sourceType>
+                    <sources>
+                        <source>${project.basedir}/src/main/resources/contracts/ssbten/Ssbten.wsdl</source>
+                    </sources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>5.1.0</version>
+                <executions>
+                    <execution>
+                        <id>citizen-mapping-api</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/contracts/citizenmapping/swagger.json</inputSpec>
+                            <output>${citizenmapping-generated-sources-folder}</output>
+                            <generatorName>java</generatorName>
+                            <generateApis>false</generateApis>
+                            <configOptions>
+                                <apiPackage>citizenmapping</apiPackage>
+                                <dateLibrary>java8</dateLibrary>
+                                <generateSupportingFiles>false</generateSupportingFiles>
+                                <library>microprofile</library>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

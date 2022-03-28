@@ -1,0 +1,25 @@
+version: '3'
+services:
+  businessengagements:
+    container_name: 'ms-businessengagements-prod'
+    image: 'ms-businessengagements:latest'
+    network_mode: bridge
+    restart: always
+    build:
+      context: .
+    ports:
+      - '8727:8080'
+    environment:
+      - spring_profiles_active=prod
+      - "JAVA_OPTS=-Xms256m -Xmx256m"
+
+      #Bolagsverket
+      - integration_bolagsverket_keystorePassword=
+
+      #Citizenmapping
+      - integration_citizenmapping_oauth2_client_id=
+      - integration_citizenmapping_oauth2_client_secret=
+
+      #Database
+      - spring_datasource_username=
+      - spring_datasource_password=

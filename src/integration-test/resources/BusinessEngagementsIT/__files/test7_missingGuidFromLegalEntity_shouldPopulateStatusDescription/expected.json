@@ -1,0 +1,35 @@
+{
+  "engagements": [
+    {
+      "organizationName": "Jons barnvagnar",
+      "organizationNumber": "198001011234"
+    },
+    {
+      "organizationName": "Jons skämtartiklar",
+      "organizationNumber": "198001011234"
+    },
+    {
+      "organizationName": "Mystery Productions AB",
+      "organizationNumber": "5560000002",
+      "organizationId": "bab17d8b-af38-4531-967c-083f15ca1572"
+    },
+    {
+      "organizationName": "Biotech AB",
+      "organizationNumber": "5560000003",
+      "organizationId": "bab17d8b-af38-4531-967c-083f15ca1573"
+    },
+    {
+      "organizationName": "Bostadsrättsföreningen Simsalabim",
+      "organizationNumber": "7691234567",
+      "organizationId": "bab17d8b-af38-4531-967c-083f15ca1574"
+    },
+    {
+      "organizationName": "Enskild näringsverksamhet",
+      "organizationNumber": "198001011234"
+    }
+  ],
+  "statusDescriptions": {
+    "198001011234": "Couldn't fetch guid for organization number"
+  },
+  "status": "NOK"
+}

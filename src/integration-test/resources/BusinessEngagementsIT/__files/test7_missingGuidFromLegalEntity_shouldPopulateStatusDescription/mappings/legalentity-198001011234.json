@@ -1,0 +1,13 @@
+{
+  "request": {
+    "url": "/legalentity/1.0/198001011234/guid",
+    "method": "GET"
+  },
+  "response": {
+    "body": "",
+    "headers": {
+      "Content-Type": "application/problem+json; charset=utf-8"
+    },
+    "status": "404"
+  }
+}
